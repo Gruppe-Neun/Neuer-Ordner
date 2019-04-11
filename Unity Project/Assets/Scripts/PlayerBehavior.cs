@@ -2,8 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerBehavior : MonoBehaviour
-{
+public class PlayerBehavior : MonoBehaviour{
 
     public float moveSpeed = 10f;
 
@@ -11,20 +10,23 @@ public class PlayerBehavior : MonoBehaviour
 
     public CursorBehavior cursor;
 
+    public int lives = 3;
+
 
     private bool shotLastFrame = false;
     // Start is called before the first frame update
-    void Start()
-    {
+    void Start(){
         
     }
 
     // Update is called once per frame
-    void Update()
-    {
+    void Update(){
+        //Moving the Player
         transform.position += Vector3.up * moveSpeed * Input.GetAxis("Vertical") * Time.deltaTime;
         transform.position += Vector3.right * moveSpeed * Input.GetAxis("Horizontal") * Time.deltaTime;
 
+
+        //Shooting
         if(Input.GetMouseButtonDown(0)&&!shotLastFrame){
             GameObject bulletClone = Instantiate(bullet, transform.position, cursor.transform.rotation);
             shotLastFrame=true;
@@ -33,5 +35,13 @@ public class PlayerBehavior : MonoBehaviour
             shotLastFrame=false;
         }
         
+    }
+
+    //Enemy hit the Player
+    public void hit(int damage){
+        lives -= damage;
+        if (lives <= 0){
+            Destroy(gameObject);
+        }
     }
 }

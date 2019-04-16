@@ -17,17 +17,17 @@ public class RangedEnemyBehavior : EnemyBehavior
 
     public float bulletSpread = 0f;
 
-    public float targetDistance = 2f; 
+    public float targetDistance = 2f;
 
 
-
-
+    private Animator animator;
+        
 
     private float shootcooldown = 2f;
 
     // Start is called before the first frame update
     void Start(){
-
+        animator = this.GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -46,7 +46,9 @@ public class RangedEnemyBehavior : EnemyBehavior
         //rotation += Mathf.Asin(moveSpeed / distance);
 
         transform.position += Quaternion.AngleAxis(rotation, Vector3.back) * Vector3.up * moveSpeed * Time.deltaTime;
-
+        
+        if (rotation > 0) { animator.SetBool("facingRight", true); }
+        else { animator.SetBool("facingRight", false); }
 
 
         //shoot

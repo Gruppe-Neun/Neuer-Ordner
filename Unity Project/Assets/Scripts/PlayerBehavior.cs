@@ -5,11 +5,9 @@ using UnityEngine;
 public class PlayerBehavior : MonoBehaviour
 {
 
-    public float moveSpeed = 10f;
+    public float moveSpeed;
 
-    public Vector3 verticalDirection;
-
-    public Vector3 horizontalDirection;
+    public Rigidbody2D rb;
 
     public GameObject bullet;
     
@@ -28,43 +26,41 @@ public class PlayerBehavior : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        horizontalDirection = Vector3.right * moveSpeed * Input.GetAxis("Horizontal") * Time.deltaTime;
-        transform.position += horizontalDirection;
-
-        verticalDirection = Vector3.up * moveSpeed * Input.GetAxis("Vertical") * Time.deltaTime;
-        transform.position += verticalDirection;
-
-        if(Input.GetMouseButtonDown(0)&&!shotLastFrame){
+        if (Input.GetMouseButtonDown(0) && !shotLastFrame) {
             GameObject bulletClone = Instantiate(bullet, transform.position, cursor.transform.rotation);
-            shotLastFrame=true;
+            shotLastFrame = true;
             Debug.Log("shot");
-        }else{if(!Input.GetMouseButtonDown(0))
-            shotLastFrame=false;
+        }
+        else {
+            if (!Input.GetMouseButtonDown(0))
+                shotLastFrame = false;
         }
 
-        // Animations
+        float moveX = Input.GetAxis("Horizontal");
+        float moveY = Input.GetAxis("Vertical");
 
+        Vector2 movement = new Vector2(moveX, moveY);
+        rb.velocity = movement * moveSpeed * Time.deltaTime;
+
+        // Animations
         bool top = false;
         bool bot = false;
         bool left = false;
         bool right = false;
 
-        float x = horizontalDirection.normalized.x;
-        float y = verticalDirection.normalized.y;
-
-        if(y == -1) {
-            bot = true;
-        }
-        
-        if(y == 1) {
+        if(Input.GetKey(KeyCode.W) || (Input.GetKey(KeyCode.W) && Input.GetKey(KeyCode.A)) || (Input.GetKey(KeyCode.W) && Input.GetKey(KeyCode.D))) {
             top = true;
         }
 
-        if(y == 0 && x == -1) {
+        if (Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.W) && !Input.GetKey(KeyCode.S)) {
             left = true;
         }
 
-        if(y == 0 && x == 1) {
+        if (Input.GetKey(KeyCode.S) || (Input.GetKey(KeyCode.S) && Input.GetKey(KeyCode.A)) || (Input.GetKey(KeyCode.S) && Input.GetKey(KeyCode.D))) {
+            bot = true;
+        }
+
+        if (Input.GetKey(KeyCode.D) && !Input.GetKey(KeyCode.W) && !Input.GetKey(KeyCode.S)) {
             right = true;
         }
 
@@ -74,8 +70,5 @@ public class PlayerBehavior : MonoBehaviour
         animator.SetBool("right", right);
         animator.SetBool("dableft", Input.GetKey(KeyCode.Q));
         animator.SetBool("dabright", Input.GetKey(KeyCode.E));
-
-        Debug.Log("Q: "+ Input.GetKey(KeyCode.Q));
-        Debug.Log("E: " + Input.GetKey(KeyCode.E));
     }
 }

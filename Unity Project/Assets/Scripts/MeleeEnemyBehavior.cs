@@ -6,7 +6,7 @@ public class MeleeEnemyBehavior : EnemyBehavior{
     // Start is called before the first frame update
     
 
-    public float speed = 5.0f;
+    
 
     void Start(){
         
@@ -15,7 +15,7 @@ public class MeleeEnemyBehavior : EnemyBehavior{
     // Update is called once per frame
     void Update(){
         //moving towards player
-        transform.position = Vector3.MoveTowards(transform.position,player.transform.position,speed*Time.deltaTime);
+        transform.position = Vector3.MoveTowards(transform.position,player.transform.position,moveSpeed*Time.deltaTime);
     }
 
     //Enemy touches the player

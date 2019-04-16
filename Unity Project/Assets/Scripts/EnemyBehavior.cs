@@ -8,6 +8,8 @@ public class EnemyBehavior : MonoBehaviour{
 
     public int lifepoints = 1;
 
+    public float moveSpeed = 4.0f;
+
     // Start is called before the first frame update
     void Start(){
         

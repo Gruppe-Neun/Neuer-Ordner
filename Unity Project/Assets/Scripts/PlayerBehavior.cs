@@ -6,12 +6,11 @@ public class PlayerBehavior : MonoBehaviour{
 
     public float moveSpeed = 10f;
 
-    public GameObject bullet;
+    public BulletBehavior bullet;
 
     public CursorBehavior cursor;
 
     public int lives = 3;
-
 
     private bool shotLastFrame = false;
     // Start is called before the first frame update
@@ -28,7 +27,8 @@ public class PlayerBehavior : MonoBehaviour{
 
         //Shooting
         if(Input.GetMouseButtonDown(0)&&!shotLastFrame){
-            GameObject bulletClone = Instantiate(bullet, transform.position, cursor.transform.rotation);
+            BulletBehavior bulletClone = Instantiate(bullet, transform.position, cursor.transform.rotation);
+            bulletClone.speed = 15.0f;
             shotLastFrame=true;
             Debug.Log("shot");
         }else{if(!Input.GetMouseButtonDown(0))

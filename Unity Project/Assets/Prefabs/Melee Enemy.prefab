@@ -12,9 +12,10 @@ GameObject:
   - component: {fileID: 3626866038716127856}
   - component: {fileID: 3626866038716127858}
   - component: {fileID: 1503444973904804056}
+  - component: {fileID: 1094028024168824613}
   m_Layer: 0
-  m_Name: Enemy
-  m_TagString: Untagged
+  m_Name: Melee Enemy
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -94,7 +95,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
-  speed: 5
+  lifepoints: 2
+  moveSpeed: 6
 --- !u!61 &1503444973904804056
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -105,7 +107,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: -0.0030072927, y: 0.01803708}
@@ -121,3 +123,24 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.0509121, y: 1.5499322}
   m_EdgeRadius: 0
+--- !u!50 &1094028024168824613
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3626866038716127857}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0

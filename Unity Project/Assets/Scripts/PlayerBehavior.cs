@@ -6,27 +6,25 @@ public class PlayerBehavior : MonoBehaviour{
 
     public float moveSpeed;
 
-
     public BulletBehavior bullet;
-
-    public Rigidbody2D rb;
-
-
-    public GameObject bullet;
     
     public CursorBehavior cursor;
 
 
     public int lives = 3;
 
-    public Animator animator;
+
+
+    private Rigidbody2D rb;
+    private Animator animator;
 
 
 
     private bool shotLastFrame = false;
     // Start is called before the first frame update
     void Start(){
-        
+        rb = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
     }
 
     // Update is called once per frame

@@ -588,10 +588,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 300
-  rb: {fileID: 382747266}
-  bullet: {fileID: 2796749233383712563, guid: b2d4558e2d252bc41bd8c75c6f47f7d3, type: 3}
+  bullet: {fileID: 2796749233383712564, guid: b2d4558e2d252bc41bd8c75c6f47f7d3, type: 3}
   cursor: {fileID: 1563340006}
-  animator: {fileID: 382747264}
+  lives: 3
 --- !u!212 &382747262
 SpriteRenderer:
   m_ObjectHideFlags: 0

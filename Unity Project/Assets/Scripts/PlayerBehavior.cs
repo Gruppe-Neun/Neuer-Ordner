@@ -2,34 +2,40 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerBehavior : MonoBehaviour
-{
+public class PlayerBehavior : MonoBehaviour{
 
     public float moveSpeed;
 
-    public Rigidbody2D rb;
-
-    public GameObject bullet;
+    public BulletBehavior bullet;
     
     public CursorBehavior cursor;
 
-    public Animator animator;
+
+    public int lives = 3;
+
+
+
+    private Rigidbody2D rb;
+    private Animator animator;
+
 
 
     private bool shotLastFrame = false;
     // Start is called before the first frame update
-    void Start()
-    {
-        
+    void Start(){
+        rb = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
-    void Update()
-    {
-        if (Input.GetMouseButtonDown(0) && !shotLastFrame) {
-            GameObject bulletClone = Instantiate(bullet, transform.position, cursor.transform.rotation);
-            shotLastFrame = true;
-            Debug.Log("shot");
+
+    void Update(){
+
+        //Shooting
+        if(Input.GetMouseButtonDown(0)&&!shotLastFrame){
+            BulletBehavior bulletClone = Instantiate(bullet, transform.position, cursor.transform.rotation);
+            bulletClone.speed = 15.0f;
+            shotLastFrame=true;
         }
         else {
             if (!Input.GetMouseButtonDown(0))
@@ -70,5 +76,13 @@ public class PlayerBehavior : MonoBehaviour
         animator.SetBool("right", right);
         animator.SetBool("dableft", Input.GetKey(KeyCode.Q));
         animator.SetBool("dabright", Input.GetKey(KeyCode.E));
+    }
+
+    //Enemy hit the Player
+    public void hit(int damage){
+        lives -= damage;
+        if (lives <= 0){
+            Destroy(gameObject);
+        }
     }
 }

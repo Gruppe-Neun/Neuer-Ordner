@@ -10,7 +10,9 @@ public class BulletBehavior : MonoBehaviour{
 
     public float maxDistance = 100f;
 
-    public bool hostile = false; 
+    public bool hostile = false;
+
+    public int damage = 1;
 
     // Start is called before the first frame update
     void Start(){
@@ -38,11 +40,11 @@ public class BulletBehavior : MonoBehaviour{
     //bullet hit other object
     void OnTriggerEnter2D(Collider2D other){
         if (hostile && other.GetComponents<PlayerBehavior>().Length>0){
-            //other.GetComponent<PlayerBehavior>().hit(1);
+            other.GetComponent<PlayerBehavior>().hit(damage);
             Destroy(gameObject);
         }else{
             if (!hostile && other.GetComponents<EnemyBehavior>().Length > 0){
-                other.GetComponent<EnemyBehavior>().hit(1);
+                other.GetComponent<EnemyBehavior>().hit(damage);
                 Destroy(gameObject);
             }
         }

@@ -10,6 +10,7 @@ public class PlayerBehavior : MonoBehaviour{
     
     public CursorBehavior cursor;
 
+    public PauseMenu pauseMenu;
 
     public int lives = 3;
 
@@ -32,7 +33,7 @@ public class PlayerBehavior : MonoBehaviour{
     void Update(){
 
         //Shooting
-        if(Input.GetMouseButtonDown(0)&&!shotLastFrame){
+        if(Input.GetMouseButtonDown(0)&&!shotLastFrame&&!PauseMenu.gamePaused){
             BulletBehavior bulletClone = Instantiate(bullet, transform.position, cursor.transform.rotation);
             bulletClone.speed = 15.0f;
             shotLastFrame=true;
@@ -70,12 +71,14 @@ public class PlayerBehavior : MonoBehaviour{
             right = true;
         }
 
-        animator.SetBool("top", top);
-        animator.SetBool("bot", bot);
-        animator.SetBool("left", left);
-        animator.SetBool("right", right);
-        animator.SetBool("dableft", Input.GetKey(KeyCode.Q));
-        animator.SetBool("dabright", Input.GetKey(KeyCode.E));
+        if (!PauseMenu.gamePaused) {
+            animator.SetBool("top", top);
+            animator.SetBool("bot", bot);
+            animator.SetBool("left", left);
+            animator.SetBool("right", right);
+            animator.SetBool("dableft", Input.GetKey(KeyCode.Q));
+            animator.SetBool("dabright", Input.GetKey(KeyCode.E));
+        }
     }
 
     //Enemy hit the Player

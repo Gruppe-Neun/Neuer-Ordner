@@ -16,16 +16,27 @@ public class PlayerBehavior : MonoBehaviour{
 
 
 
+    public float bulletSizeMultiplier = 1;
+    public int bulletCountMultiplier = 1;
+    public float bulletSpeedMultiplier = 1;
+    public float shotSpeedMultiplier = 1;
+    public float moveSpeedMutiplier = 1;
+    public int bulletDamageMultiplier = 1;
+
+
     private Rigidbody2D rb;
     private Animator animator;
+    private PlayerLifeBehavior lifeCount;
 
 
+    private float shotCooldown = 0f;
 
-    private bool shotLastFrame = false;
+
     // Start is called before the first frame update
     void Start(){
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
+        lifeCount = GetComponentInChildren<PlayerLifeBehavior>();
     }
 
     // Update is called once per frame
@@ -33,21 +44,30 @@ public class PlayerBehavior : MonoBehaviour{
     void Update(){
 
         //Shooting
-        if(Input.GetMouseButtonDown(0)&&!shotLastFrame&&!PauseMenu.gamePaused){
-            BulletBehavior bulletClone = Instantiate(bullet, transform.position, cursor.transform.rotation);
-            bulletClone.speed = 15.0f;
-            shotLastFrame=true;
+        if(Input.GetMouseButton(0)&&shotCooldown<=0&&!PauseMenu.gamePaused){
+            float rotation = Vector3.Angle(new Vector3(0, -1, 0), new Vector3(transform.position[0] - cursor.transform.position[0], transform.position[1] - cursor.transform.position[1], 0));
+            if (transform.position[0] > cursor.transform.position[0]) { rotation *= -1; }
+            rotation -= ((bulletCountMultiplier - 1) * 2.5f);
+            for (int i = 0; i < bulletCountMultiplier;i++) {
+                BulletBehavior bulletClone = Instantiate(bullet, transform.position, Quaternion.AngleAxis(rotation+(5*i),Vector3.back));
+                bulletClone.speed = 10.0f * bulletSpeedMultiplier;
+                bulletClone.size = bulletSizeMultiplier;
+                bulletClone.damage = bulletDamageMultiplier;
+            }
+
+            
+            shotCooldown=1;
         }
         else {
-            if (!Input.GetMouseButtonDown(0))
-                shotLastFrame = false;
+            shotCooldown -= Time.deltaTime * shotSpeedMultiplier;
         }
+        
 
         float moveX = Input.GetAxis("Horizontal");
         float moveY = Input.GetAxis("Vertical");
 
         Vector2 movement = new Vector2(moveX, moveY);
-        rb.velocity = movement * moveSpeed * Time.deltaTime;
+        rb.velocity = movement * moveSpeed * Time.deltaTime * moveSpeedMutiplier;
 
         // Animations
         bool top = false;
@@ -84,8 +104,37 @@ public class PlayerBehavior : MonoBehaviour{
     //Enemy hit the Player
     public void hit(int damage){
         lives -= damage;
-        if (lives <= 0){
+        lifeCount.hit(lives);
+        if (lives < 0){
             Destroy(gameObject);
+        }
+    }
+
+    public void upgrade(int Type, int Amount) {
+        switch (Type) {
+            case UpgradeBehavior.UPGRADE_BULLETCOUNT :
+                bulletCountMultiplier += Amount;
+                break;
+
+            case UpgradeBehavior.UPGRADE_BULLETSIZE :
+                bulletSizeMultiplier += Amount * 0.5f;
+                break;
+
+            case UpgradeBehavior.UPGRADE_BULLETSPEED :
+                bulletSpeedMultiplier += Amount * 0.25f;
+                break;
+
+            case UpgradeBehavior.UPGRADE_MOVESPEED:
+                moveSpeedMutiplier += Amount * 0.25f;
+                break;
+
+            case UpgradeBehavior.UPGRADE_SHOTSPEED:
+                shotSpeedMultiplier += Amount * 0.5f;
+                break;
+
+            case UpgradeBehavior.UPGRADE_BULLETDAMAGE:
+                bulletDamageMultiplier += Amount;
+                break;
         }
     }
 }

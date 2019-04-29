@@ -5,7 +5,6 @@ using UnityEngine;
 public class BossLevelBehavior : LevelBehavior
 {
 
-    public float time = 30;
 
     public float SpawnInterval = 5;
 
@@ -17,42 +16,44 @@ public class BossLevelBehavior : LevelBehavior
 
     public float itemPercentage = 2f;
 
+    public BossBehavior boss;
 
-    private float timeLeft;
     private float nextSpawn;
 
     // Start is called before the first frame update
     void Start() {
         gameObject.SetActive(false);
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerBehavior>();
+        gameController = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameControllerBehavior>();
+
     }
 
     public override void startLevel() {
         if (status == 0) {
             gameObject.SetActive(true);
-            timeLeft = time;
-            nextSpawn = time - SpawnInterval / 2;
+
+            nextSpawn = SpawnInterval;
+            boss = GameObject.Instantiate(boss);
+            boss.gameController = gameController;
         }
+       
     }
 
     // Update is called once per frame
     void Update() {
-        timeLeft -= Time.deltaTime;
-        if (timeLeft <= 0) {
+        nextSpawn -= Time.deltaTime;
+        if (boss.lifepoints <= 0) {
             gameObject.SetActive(false);
             status = 1;
             GameObject.Instantiate(Reward, new Vector3(0, 0, 0), new Quaternion());
         }
-        if (timeLeft <= nextSpawn) {
-            if (nextSpawn > SpawnInterval) {
-                nextSpawn -= SpawnInterval;
-            } else {
-                nextSpawn = -1;
-            }
+        if (nextSpawn <= 0) {
             spawnWave();
-
+            nextSpawn = SpawnInterval;
+            
         }
-
+        
+        
     }
 
     private void spawnWave() {
@@ -95,7 +96,7 @@ public class BossLevelBehavior : LevelBehavior
     }
 
     public override float progress() {
-        return (time - timeLeft) / time;
+        return boss.healthPercentage();
     }
 
     public override void endLevel() {

@@ -317,6 +317,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levelName: Start
+  gameController: {fileID: 0}
   locked: 0
   successor_1: {fileID: 0}
   successor_2: {fileID: 0}
@@ -869,6 +870,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levelName: Start
+  gameController: {fileID: 0}
   locked: 0
   successor_1: {fileID: 0}
   successor_2: {fileID: 0}
@@ -1090,7 +1092,7 @@ MonoBehaviour:
   pauseMenu: {fileID: 0}
   lives: 3
   bulletSizeMultiplier: 1
-  bulletCountMultiplier: 5
+  bulletCountMultiplier: 3
   bulletSpeedMultiplier: 1
   shotSpeedMultiplier: 2
   moveSpeedMutiplier: 1
@@ -1154,7 +1156,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 382747260}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.42, y: 0, z: 0}
+  m_LocalPosition: {x: 3, y: 0, z: 0}
   m_LocalScale: {x: 0.3, y: 0.3, z: 1}
   m_Children:
   - {fileID: 1562896666}
@@ -1334,19 +1336,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levelName: neuer Ordner
-  locked: 3
+  gameController: {fileID: 0}
+  locked: 0
   successor_1: {fileID: 0}
   successor_2: {fileID: 0}
   successor_3: {fileID: 0}
   predecessor: {fileID: 0}
-  time: 30
   SpawnInterval: 3
   enemies:
   - {fileID: 3626866038716127858, guid: f0711016f24165f44b6dc17b0318c58e, type: 3}
   - {fileID: 5453316148091042141, guid: 13875b568d06d4640a23ecf61149266c, type: 3}
-  EnemyAmout: 0200000002000000
+  EnemyAmout: 0000000000000000
   Reward: {fileID: 5696828801185677070, guid: 097862cfbc7c6a346a647f15838456c4, type: 3}
   itemPercentage: 0
+  boss: {fileID: 8287221903007161259, guid: 08c2e2ae91b7189498d8e7f658ff363a, type: 3}
 --- !u!4 &404066939
 Transform:
   m_ObjectHideFlags: 0
@@ -1610,6 +1613,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levelName: Start
+  gameController: {fileID: 0}
   locked: 0
   successor_1: {fileID: 0}
   successor_2: {fileID: 0}
@@ -2150,6 +2154,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levelName: Start
+  gameController: {fileID: 0}
   locked: 0
   successor_1: {fileID: 0}
   successor_2: {fileID: 0}
@@ -2386,6 +2391,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levelName: Start
+  gameController: {fileID: 0}
   locked: 0
   successor_1: {fileID: 0}
   successor_2: {fileID: 0}
@@ -3002,6 +3008,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levelName: neuer Ordner
+  gameController: {fileID: 0}
   locked: 2
   successor_1: {fileID: 489505328}
   successor_2: {fileID: 348700047}
@@ -3116,7 +3123,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1053184108}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1375868505}
@@ -3159,6 +3166,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levelName: Start
+  gameController: {fileID: 0}
   locked: 0
   successor_1: {fileID: 1950066432}
   successor_2: {fileID: 1171194659}
@@ -3246,7 +3254,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startLevel: {fileID: 1448981726}
-  endLevel: {fileID: 0}
+  endLevel: {fileID: 404066938}
+  winScreen: {fileID: 0}
+  defeatScreen: {fileID: 0}
+  levelBackground: {fileID: 540158222}
+  scoreText: {fileID: 1336916904}
 --- !u!1 &1171194658
 GameObject:
   m_ObjectHideFlags: 0
@@ -3277,6 +3289,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levelName: neuer Ordner
+  gameController: {fileID: 0}
   locked: 1
   successor_1: {fileID: 1482186071}
   successor_2: {fileID: 644662362}
@@ -3659,6 +3672,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levelName: neuer Ordner
+  gameController: {fileID: 0}
   locked: 0
   successor_1: {fileID: 0}
   successor_2: {fileID: 0}
@@ -3732,6 +3746,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levelName: Start
+  gameController: {fileID: 0}
   locked: 0
   successor_1: {fileID: 0}
   successor_2: {fileID: 0}
@@ -4043,7 +4058,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1563340005}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 2, z: -5}
+  m_LocalPosition: {x: 3, y: 1, z: -5}
   m_LocalScale: {x: 0.2, y: 0.3, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -4193,7 +4208,7 @@ GameObject:
   - component: {fileID: 1594959705}
   - component: {fileID: 1594959706}
   m_Layer: 0
-  m_Name: Canvas
+  m_Name: UI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4952,6 +4967,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levelName: neuer Ordner
+  gameController: {fileID: 0}
   locked: 0
   successor_1: {fileID: 4744666059236728733}
   successor_2: {fileID: 153686827}
@@ -5088,6 +5104,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levelName: Start
+  gameController: {fileID: 0}
   locked: 0
   successor_1: {fileID: 0}
   successor_2: {fileID: 0}
@@ -5244,6 +5261,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levelName: Start
+  gameController: {fileID: 0}
   locked: 0
   successor_1: {fileID: 0}
   successor_2: {fileID: 0}
@@ -5367,10 +5385,15 @@ PrefabInstance:
       propertyPath: cursor
       value: 
       objectReference: {fileID: 1563340006}
+    - target: {fileID: 2418754985527812446, guid: b8a9b8b6388e73e4884ea82a4fd788fe,
+        type: 3}
+      propertyPath: bulletCountMultiplier
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 2418754985527812444, guid: b8a9b8b6388e73e4884ea82a4fd788fe,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.42
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2418754985527812444, guid: b8a9b8b6388e73e4884ea82a4fd788fe,
         type: 3}
@@ -5451,6 +5474,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levelName: Start
+  gameController: {fileID: 0}
   locked: 0
   successor_1: {fileID: 0}
   successor_2: {fileID: 0}

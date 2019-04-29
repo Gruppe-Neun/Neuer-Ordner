@@ -25,4 +25,12 @@ public class MeleeEnemyBehavior : EnemyBehavior{
             Destroy(gameObject);
         }
     }
+
+    public override void hit(int damage) {
+        lifepoints -= damage;
+        if (lifepoints <= 0) {
+            Destroy(gameObject);
+            gameController.addScore(score);
+        }
+    }
 }

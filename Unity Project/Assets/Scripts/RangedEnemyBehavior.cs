@@ -70,4 +70,12 @@ public class RangedEnemyBehavior : EnemyBehavior
             bulletClone.size = bulletSize;
         }
     }
+
+    public override void hit(int damage) {
+        lifepoints -= damage;
+        if (lifepoints <= 0) {
+            Destroy(gameObject);
+            gameController.addScore(score);
+        }
+    }
 }

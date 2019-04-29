@@ -9,7 +9,16 @@ public class GameControllerBehavior : MonoBehaviour {
 
     public LevelBehavior endLevel;
 
+    public Sprite winScreen;
 
+    public Sprite defeatScreen;
+
+    public SpriteRenderer levelBackground;
+
+    public Text scoreText;
+
+
+    private int score = 0;
 
     private PlayerBehavior player;
 
@@ -66,19 +75,19 @@ public class GameControllerBehavior : MonoBehaviour {
         
         if (activeLevel.predecessor != null) {
             names[0] = "zurück";
-            locks[0] = activeLevel.predecessor.locked;
+            locks[0] = activeLevel.predecessor.locked - player.keyAmount;
         }
         if (activeLevel.successor_1 != null) {
             names[1] = activeLevel.successor_1.levelName;
-            locks[1] = activeLevel.successor_1.locked;
+            locks[1] = activeLevel.successor_1.locked - player.keyAmount;
         }
         if (activeLevel.successor_2 != null) {
             names[2] = activeLevel.successor_2.levelName;
-            locks[2] = activeLevel.successor_2.locked;
+            locks[2] = activeLevel.successor_2.locked - player.keyAmount;
         }
         if (activeLevel.successor_3 != null) {
             names[3] = activeLevel.successor_3.levelName;
-            locks[3] = activeLevel.successor_3.locked;
+            locks[3] = activeLevel.successor_3.locked - player.keyAmount;
         }
         folderTopLeft.setName(names[0], locks[0]);
         folderTopRight.setName(names[1], locks[1]);
@@ -124,11 +133,19 @@ public class GameControllerBehavior : MonoBehaviour {
         path.text = newPath;
     }
 
-    private void gameOver(bool win) {
+    public void addScore(int add) {
+        score += add;
+        scoreText.text = "" + score;
+    }
+
+    //gameOverScreen
+    public void gameOver(bool win) {
         if (win) {
-
+            levelBackground.gameObject.SetActive(true);
+            levelBackground.sprite = winScreen;
         } else {
-
+            levelBackground.sprite = defeatScreen;
+            levelBackground.gameObject.SetActive(true);
         }
     }
 }

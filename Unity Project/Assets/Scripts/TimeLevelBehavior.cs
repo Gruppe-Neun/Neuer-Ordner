@@ -26,6 +26,7 @@ public class TimeLevelBehavior : LevelBehavior {
     {
         gameObject.SetActive(false);
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerBehavior>();
+        gameController = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameControllerBehavior>();
     }
 
     public override void startLevel() {
@@ -43,6 +44,7 @@ public class TimeLevelBehavior : LevelBehavior {
         if (timeLeft <= 0) {
             gameObject.SetActive(false);
             status = 1;
+            gameController.addScore(100);
             GameObject.Instantiate(Reward,new Vector3(0,0,0),new Quaternion());
         }
         if (timeLeft <= nextSpawn) {
@@ -91,6 +93,7 @@ public class TimeLevelBehavior : LevelBehavior {
                 else {
                     EnemyBehavior newEnemy = GameObject.Instantiate(enemies[i], new Vector3(xSpawn, ySpawn, 0), new Quaternion());
                     newEnemy.player = player;
+                    newEnemy.gameController = gameController;
                 }
                 
             }

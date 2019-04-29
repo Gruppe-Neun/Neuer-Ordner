@@ -8,6 +8,7 @@ public abstract class LevelBehavior : MonoBehaviour
     
     public string levelName = "neuer Ordner";
 
+    public GameControllerBehavior gameController;
     //number of keys to open
     public int locked = 0;
 
@@ -25,6 +26,7 @@ public abstract class LevelBehavior : MonoBehaviour
     {
         gameObject.SetActive(false);
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerBehavior>();
+        gameController = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameControllerBehavior>();
     }
 
     // Update is called once per frame

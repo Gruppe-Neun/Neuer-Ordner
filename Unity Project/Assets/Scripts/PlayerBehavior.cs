@@ -22,7 +22,7 @@ public class PlayerBehavior : MonoBehaviour{
     public float shotSpeedMultiplier = 1;
     public float moveSpeedMutiplier = 1;
     public int bulletDamageMultiplier = 1;
-
+    public int keyAmount = 0;
 
     private Rigidbody2D rb;
     private Animator animator;
@@ -30,7 +30,7 @@ public class PlayerBehavior : MonoBehaviour{
 
 
     private float shotCooldown = 0f;
-
+    private float invincible = -1;
 
     // Start is called before the first frame update
     void Start(){
@@ -57,11 +57,15 @@ public class PlayerBehavior : MonoBehaviour{
 
             
             shotCooldown=1;
-        }
-        else {
+        }else {
             shotCooldown -= Time.deltaTime * shotSpeedMultiplier;
         }
+
+        if (invincible > 0) {
+            invincible -= Time.deltaTime;
+        }
         
+
 
         float moveX = Input.GetAxis("Horizontal");
         float moveY = Input.GetAxis("Vertical");
@@ -103,10 +107,14 @@ public class PlayerBehavior : MonoBehaviour{
 
     //Enemy hit the Player
     public void hit(int damage){
-        lives -= damage;
-        lifeCount.hit(lives);
-        if (lives < 0){
-            Destroy(gameObject);
+        if (invincible <= 0) {
+            lives -= damage;
+            lifeCount.hit(lives);
+            if (lives < 0) {
+                Destroy(gameObject);
+                GameObject.Find("GameController").GetComponent<GameControllerBehavior>().gameOver(false);
+            }
+            invincible = 1;
         }
     }
 
@@ -134,6 +142,16 @@ public class PlayerBehavior : MonoBehaviour{
 
             case UpgradeBehavior.UPGRADE_BULLETDAMAGE:
                 bulletDamageMultiplier += Amount;
+                break;
+
+            case UpgradeBehavior.UPGRADE_KEY:
+                keyAmount++;
+                break;
+
+            case UpgradeBehavior.UPGRADE_END:
+                //end game
+                Debug.Log("won");
+                GameObject.Find("GameController").GetComponent<GameControllerBehavior>().gameOver(true);
                 break;
         }
     }

@@ -17,7 +17,7 @@ public class RangedEnemyBehavior : EnemyBehavior
 
     public float bulletSpread = 0f;
 
-    public float targetDistance = 2f;
+    public float targetDistance = 1f;
 
 
     private Animator animator;
@@ -68,6 +68,14 @@ public class RangedEnemyBehavior : EnemyBehavior
             bulletClone.hostile = true;
             bulletClone.speed = bulletSpeed;
             bulletClone.size = bulletSize;
+        }
+    }
+
+    public override void hit(int damage) {
+        lifepoints -= damage;
+        if (lifepoints <= 0) {
+            Destroy(gameObject);
+            gameController.addScore(score);
         }
     }
 }

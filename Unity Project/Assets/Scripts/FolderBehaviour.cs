@@ -9,17 +9,25 @@ public class FolderBehaviour : MonoBehaviour
 
     public Text folderName;
 
-    public GameObject player;
+    public SpriteRenderer lockSprite;
 
-    public Animator animator;
+    public Sprite lock_1;
 
-    public GameObject folderTopLeft;
+    public Sprite lock_2;
 
-    public GameObject folderTopRight;
+    public Sprite lock_3;
 
-    public GameObject folderBottomLeft;
+    private GameControllerBehavior gameController;
 
-    public GameObject folderBottomRight;
+    private GameObject player;
+
+    private Animator animator;
+
+    private float cooldown = 0;
+
+    private int lockState = 0;
+
+    
 
     // Start is called before the first frame update
     void Start()
@@ -27,34 +35,59 @@ public class FolderBehaviour : MonoBehaviour
         player = GameObject.FindWithTag("Player");
         animator = GetComponent<Animator>();
         folderName = this.gameObject.GetComponentInChildren<Text>();
-
-        folderTopLeft = GameObject.FindGameObjectWithTag("FolderTopLeft");
-        folderTopRight = GameObject.FindGameObjectWithTag("FolderTopRight");
-        folderBottomLeft = GameObject.FindGameObjectWithTag("FolderBottomLeft");
-        folderBottomRight = GameObject.FindGameObjectWithTag("FolderBottomRight");
-
-        gameObject.SetActive(false);
-
-        folderBottomRight.SetActive(true);
-        folderBottomRight.GetComponentInChildren<Text>().text = "Start Game";
+        gameController = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameControllerBehavior>(); ;
     }
 
     // Update is called once per frame
     void Update()
     { 
-        if(player.transform.position.x > gameObject.transform.position.x - 0.4f &&
+        if(cooldown>0) {
+            cooldown -= Time.deltaTime;
+        }
+        if(lockState==0 &&
+           player.transform.position.x > gameObject.transform.position.x - 0.4f &&
            player.transform.position.x < gameObject.transform.position.x + 0.4f &&
            player.transform.position.y > gameObject.transform.position.y - 0.3f &&
            player.transform.position.y < gameObject.transform.position.y + 0.3f) {
-
+            
             animator.SetBool("PlayerOnFolder", true);
-        }
-        else {
+
+            if (Input.GetKey(KeyCode.E) && cooldown <= 0) {
+                gameController.selectLevel(gameObject.tag);
+            }
+        }else {
             animator.SetBool("PlayerOnFolder", false);
         }
     }
 
-    private void LoadStage1() {
-
+    public void setName(string folderName, int lockMode) {
+        if (folderName == null) {
+            gameObject.SetActive(false);
+        } else {
+            gameObject.SetActive(true);
+            GetComponentInChildren<Text>().text = folderName;
+        }
+        lockState = lockMode;
+        switch (lockMode) {
+            case 3:
+                lockSprite.sprite = lock_3;
+                lockSprite.gameObject.SetActive(true);
+                lockSprite.enabled = true;
+                break;
+            case 2:
+                lockSprite.sprite = lock_2;
+                lockSprite.gameObject.SetActive(true);
+                lockSprite.enabled = true;
+                break;
+            case 1:
+                lockSprite.sprite = lock_1;
+                lockSprite.gameObject.SetActive(true);
+                lockSprite.enabled = true;
+                break;
+            case 0:
+                lockSprite.enabled = false;
+                lockSprite.gameObject.SetActive(false);
+                break;
+        }
     }
 }

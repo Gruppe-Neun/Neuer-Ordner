@@ -2,13 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyBehavior : MonoBehaviour{
+public abstract class EnemyBehavior : MonoBehaviour{
 
     public PlayerBehavior player;
 
+    public GameControllerBehavior gameController;
+
+    public int score = 20;
+
     public int lifepoints = 1;
 
-    public float moveSpeed = 4.0f;
+    public float moveSpeed = 2.0f;
 
     // Start is called before the first frame update
     void Start(){
@@ -21,10 +25,5 @@ public class EnemyBehavior : MonoBehaviour{
     }
 
     //Bullet hit the Enemy
-    public void hit(int damage){
-        lifepoints -= damage;
-        if (lifepoints <= 0){
-            Destroy(gameObject);
-        }
-    }
+    public abstract void hit(int damage);
 }

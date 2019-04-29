@@ -9,6 +9,8 @@ TagManager:
   - FolderTopRight
   - FolderBottomLeft
   - FolderBottomRight
+  - LevelBackground
+  - ProgressBar
   layers:
   - Default
   - TransparentFX

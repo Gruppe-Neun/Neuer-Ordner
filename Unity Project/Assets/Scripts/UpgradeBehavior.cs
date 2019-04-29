@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class UpgradeBehavior : MonoBehaviour
 {
-
+    public const int UPGRADE_END = -1;
     public const int UPGRADE_KEY = 0;
     public const int UPGRADE_SHOTSPEED = 1;
     public const int UPGRADE_BULLETSPEED = 2;

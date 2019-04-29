@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TimeLevelBehavior : LevelBehavior {
-
+public class BossLevelBehavior : LevelBehavior
+{
 
     public float time = 30;
 
@@ -17,13 +17,12 @@ public class TimeLevelBehavior : LevelBehavior {
 
     public float itemPercentage = 2f;
 
-    
+
     private float timeLeft;
     private float nextSpawn;
 
     // Start is called before the first frame update
-    void Start()
-    {
+    void Start() {
         gameObject.SetActive(false);
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerBehavior>();
     }
@@ -32,18 +31,17 @@ public class TimeLevelBehavior : LevelBehavior {
         if (status == 0) {
             gameObject.SetActive(true);
             timeLeft = time;
-            nextSpawn = time - SpawnInterval/2;
+            nextSpawn = time - SpawnInterval / 2;
         }
     }
 
     // Update is called once per frame
-    void Update()
-    {
+    void Update() {
         timeLeft -= Time.deltaTime;
         if (timeLeft <= 0) {
             gameObject.SetActive(false);
             status = 1;
-            GameObject.Instantiate(Reward,new Vector3(0,0,0),new Quaternion());
+            GameObject.Instantiate(Reward, new Vector3(0, 0, 0), new Quaternion());
         }
         if (timeLeft <= nextSpawn) {
             if (nextSpawn > SpawnInterval) {
@@ -52,13 +50,13 @@ public class TimeLevelBehavior : LevelBehavior {
                 nextSpawn = -1;
             }
             spawnWave();
-            
+
         }
 
     }
 
     private void spawnWave() {
-        for(int i = 0; i < enemies.Length; i++) {
+        for (int i = 0; i < enemies.Length; i++) {
 
             for (int c = 0; c < EnemyAmout[i]; c++) {
 
@@ -75,30 +73,29 @@ public class TimeLevelBehavior : LevelBehavior {
                         ySpawn = 8 * Random.value - 4;
                         break;
                     case 2:
-                        xSpawn = 16 * Random.value -8;
+                        xSpawn = 16 * Random.value - 8;
                         ySpawn = -4;
                         break;
                     case 3:
-                        xSpawn = 16 * Random.value -8;
+                        xSpawn = 16 * Random.value - 8;
                         ySpawn = 4;
                         break;
                 }
 
                 //low chance to spawn Item instead of enemy
-                if (Random.value > 1-(itemPercentage/100)) {
+                if (Random.value > 1 - itemPercentage) {
                     GameObject.Instantiate(Reward, new Vector3(0, 0, 0), new Quaternion());
-                }
-                else {
+                } else {
                     EnemyBehavior newEnemy = GameObject.Instantiate(enemies[i], new Vector3(xSpawn, ySpawn, 0), new Quaternion());
                     newEnemy.player = player;
                 }
-                
+
             }
         }
     }
 
     public override float progress() {
-        return (time-timeLeft) / time;
+        return (time - timeLeft) / time;
     }
 
     public override void endLevel() {

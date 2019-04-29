@@ -7,8 +7,11 @@ public class GameControllerBehavior : MonoBehaviour {
 
     public LevelBehavior startLevel;
 
+    public LevelBehavior endLevel;
 
 
+
+    private PlayerBehavior player;
 
     private LevelBehavior activeLevel;
 
@@ -24,6 +27,7 @@ public class GameControllerBehavior : MonoBehaviour {
     // Start is called before the first frame update
     void Start()
     {
+        
         path = GetComponentInChildren<Text>();
         progressBar = GameObject.FindGameObjectWithTag("ProgressBar").GetComponent<ProgressBarBehavior>();
         folderTopLeft = GameObject.FindGameObjectWithTag("FolderTopLeft").GetComponent<FolderBehaviour>();
@@ -33,15 +37,15 @@ public class GameControllerBehavior : MonoBehaviour {
 
         activeLevel = startLevel;
         GameObject.FindGameObjectWithTag("LevelBackground").SetActive(false) ;
-        
-       
+
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerBehavior>();
 
 
 
-        folderTopLeft.setName(null);
-        folderTopRight.setName(null);
-        folderBottomLeft.setName(null);
-        folderBottomRight.setName("Start Game");
+        folderTopLeft.setName(null,0);
+        folderTopRight.setName(null,0);
+        folderBottomLeft.setName(null,0);
+        folderBottomRight.setName("Start Game",0);
 
         activeLevel.startLevel();
     }
@@ -58,20 +62,28 @@ public class GameControllerBehavior : MonoBehaviour {
 
     public void levelSelectScreen() {
         string[] names = new string[] { null, null, null, null };
-
-        if(activeLevel.predecessor !=null) {
+        int[] locks = new int[4] { 0, 0, 0, 0 }; 
+        
+        if (activeLevel.predecessor != null) {
             names[0] = "zurück";
+            locks[0] = activeLevel.predecessor.locked;
         }
         if (activeLevel.successor_1 != null) {
             names[1] = activeLevel.successor_1.levelName;
+            locks[1] = activeLevel.successor_1.locked;
         }
         if (activeLevel.successor_2 != null) {
             names[2] = activeLevel.successor_2.levelName;
+            locks[2] = activeLevel.successor_2.locked;
         }
         if (activeLevel.successor_3 != null) {
             names[3] = activeLevel.successor_3.levelName;
+            locks[3] = activeLevel.successor_3.locked;
         }
-        setFolder(names[0],names[1],names[2],names[3]);
+        folderTopLeft.setName(names[0], locks[0]);
+        folderTopRight.setName(names[1], locks[1]);
+        folderBottomLeft.setName(names[2], locks[2]);
+        folderBottomRight.setName(names[3], locks[3]);
     }
 
     public void selectLevel(string folder) {
@@ -94,10 +106,10 @@ public class GameControllerBehavior : MonoBehaviour {
         }
 
         activeLevel.startLevel();
-        folderTopLeft.setName(null);
-        folderTopRight.setName(null);
-        folderBottomLeft.setName(null);
-        folderBottomRight.setName(null);
+        folderTopLeft.setName(null,0);
+        folderTopRight.setName(null,0);
+        folderBottomLeft.setName(null,0);
+        folderBottomRight.setName(null,0);
 
         string newPath = activeLevel.levelName+"/";
         LevelBehavior tempLevel = activeLevel;
@@ -111,12 +123,12 @@ public class GameControllerBehavior : MonoBehaviour {
         }
         path.text = newPath;
     }
-    
 
-    private void setFolder(string topLeft, string topRight, string bottomLeft, string bottomRight) {
-        folderTopLeft.setName(topLeft);
-        folderTopRight.setName(topRight);
-        folderBottomLeft.setName(bottomLeft);
-        folderBottomRight.setName(bottomRight);
+    private void gameOver(bool win) {
+        if (win) {
+
+        } else {
+
+        }
     }
 }

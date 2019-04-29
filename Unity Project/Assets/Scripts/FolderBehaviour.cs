@@ -9,6 +9,13 @@ public class FolderBehaviour : MonoBehaviour
 
     public Text folderName;
 
+    public SpriteRenderer lockSprite;
+
+    public Sprite lock_1;
+
+    public Sprite lock_2;
+
+    public Sprite lock_3;
 
     private GameControllerBehavior gameController;
 
@@ -18,6 +25,10 @@ public class FolderBehaviour : MonoBehaviour
 
     private float cooldown = 0;
 
+    private int lockState = 0;
+
+    
+
     // Start is called before the first frame update
     void Start()
     {
@@ -25,7 +36,6 @@ public class FolderBehaviour : MonoBehaviour
         animator = GetComponent<Animator>();
         folderName = this.gameObject.GetComponentInChildren<Text>();
         gameController = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameControllerBehavior>(); ;
-        
     }
 
     // Update is called once per frame
@@ -34,7 +44,8 @@ public class FolderBehaviour : MonoBehaviour
         if(cooldown>0) {
             cooldown -= Time.deltaTime;
         }
-        if(player.transform.position.x > gameObject.transform.position.x - 0.4f &&
+        if(lockState==0 &&
+           player.transform.position.x > gameObject.transform.position.x - 0.4f &&
            player.transform.position.x < gameObject.transform.position.x + 0.4f &&
            player.transform.position.y > gameObject.transform.position.y - 0.3f &&
            player.transform.position.y < gameObject.transform.position.y + 0.3f) {
@@ -44,18 +55,39 @@ public class FolderBehaviour : MonoBehaviour
             if (Input.GetKey(KeyCode.E) && cooldown <= 0) {
                 gameController.selectLevel(gameObject.tag);
             }
-        }
-        else {
+        }else {
             animator.SetBool("PlayerOnFolder", false);
         }
     }
-    
-    public void setName(string folderName) {
+
+    public void setName(string folderName, int lockMode) {
         if (folderName == null) {
             gameObject.SetActive(false);
         } else {
             gameObject.SetActive(true);
             GetComponentInChildren<Text>().text = folderName;
+        }
+        lockState = lockMode;
+        switch (lockMode) {
+            case 3:
+                lockSprite.sprite = lock_3;
+                lockSprite.gameObject.SetActive(true);
+                lockSprite.enabled = true;
+                break;
+            case 2:
+                lockSprite.sprite = lock_2;
+                lockSprite.gameObject.SetActive(true);
+                lockSprite.enabled = true;
+                break;
+            case 1:
+                lockSprite.sprite = lock_1;
+                lockSprite.gameObject.SetActive(true);
+                lockSprite.enabled = true;
+                break;
+            case 0:
+                lockSprite.enabled = false;
+                lockSprite.gameObject.SetActive(false);
+                break;
         }
     }
 }

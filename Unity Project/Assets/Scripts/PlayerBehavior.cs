@@ -146,6 +146,11 @@ public class PlayerBehavior : MonoBehaviour{
             case UpgradeBehavior.UPGRADE_KEY:
                 keyAmount++;
                 break;
+
+            case UpgradeBehavior.UPGRADE_END:
+
+                //end game
+                break;
         }
     }
 }

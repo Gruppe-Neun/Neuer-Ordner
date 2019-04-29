@@ -4,9 +4,12 @@ using UnityEngine;
 
 public abstract class LevelBehavior : MonoBehaviour
 {
-
+    
     
     public string levelName = "neuer Ordner";
+
+    //number of keys to open
+    public int locked = 0;
 
     public LevelBehavior successor_1;
     public LevelBehavior successor_2;
@@ -39,4 +42,5 @@ public abstract class LevelBehavior : MonoBehaviour
     public int getStatus() {
         return status;
     }
+
 }

@@ -10,13 +10,13 @@ public class TextLevelBehavior : LevelBehavior {
 
     private float timeLeft;
     private int frame = 1;
-    private SpriteRenderer spriteRenderer;
+    public SpriteRenderer spriteRenderer;
 
     // Start is called before the first frame update
     void Start() {
         
         timeLeft = time;
-        spriteRenderer = GameObject.FindGameObjectWithTag("LevelBackground").GetComponent<SpriteRenderer>();
+        //spriteRenderer = GameObject.FindGameObjectWithTag("LevelBackground").GetComponent<SpriteRenderer>();
         
     }
 

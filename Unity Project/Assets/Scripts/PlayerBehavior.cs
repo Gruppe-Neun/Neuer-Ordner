@@ -22,7 +22,7 @@ public class PlayerBehavior : MonoBehaviour{
     public float shotSpeedMultiplier = 1;
     public float moveSpeedMutiplier = 1;
     public int bulletDamageMultiplier = 1;
-
+    public int keyAmount = 0;
 
     private Rigidbody2D rb;
     private Animator animator;
@@ -107,7 +107,7 @@ public class PlayerBehavior : MonoBehaviour{
 
     //Enemy hit the Player
     public void hit(int damage){
-        if (invincible > 0) {
+        if (invincible <= 0) {
             lives -= damage;
             lifeCount.hit(lives);
             if (lives < 0) {
@@ -141,6 +141,10 @@ public class PlayerBehavior : MonoBehaviour{
 
             case UpgradeBehavior.UPGRADE_BULLETDAMAGE:
                 bulletDamageMultiplier += Amount;
+                break;
+
+            case UpgradeBehavior.UPGRADE_KEY:
+                keyAmount++;
                 break;
         }
     }

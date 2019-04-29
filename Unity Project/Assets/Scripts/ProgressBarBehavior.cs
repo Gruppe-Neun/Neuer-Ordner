@@ -24,6 +24,5 @@ public class ProgressBarBehavior : MonoBehaviour
     public void setProgress(float progress) {
         transform.localScale = new Vector3(xScale * progress, transform.localScale.y, 1);
         //transform.position.Set(xPos * progress / 200, transform.position.y, transform.position.z);
-        Debug.Log("test");
     }
 }

@@ -30,10 +30,10 @@ public class GameControllerBehavior : MonoBehaviour {
         folderTopRight = GameObject.FindGameObjectWithTag("FolderTopRight").GetComponent<FolderBehaviour>();
         folderBottomLeft = GameObject.FindGameObjectWithTag("FolderBottomLeft").GetComponent<FolderBehaviour>();
         folderBottomRight = GameObject.FindGameObjectWithTag("FolderBottomRight").GetComponent<FolderBehaviour>();
-        
-        GameObject.FindGameObjectWithTag("LevelBackground").SetActive(false) ;
+
         activeLevel = startLevel;
-        activeLevel.startLevel();
+        GameObject.FindGameObjectWithTag("LevelBackground").SetActive(false) ;
+        
        
 
 
@@ -42,6 +42,8 @@ public class GameControllerBehavior : MonoBehaviour {
         folderTopRight.setName(null);
         folderBottomLeft.setName(null);
         folderBottomRight.setName("Start Game");
+
+        activeLevel.startLevel();
     }
 
     // Update is called once per frame

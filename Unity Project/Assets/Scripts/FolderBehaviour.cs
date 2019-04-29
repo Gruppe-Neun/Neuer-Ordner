@@ -16,6 +16,8 @@ public class FolderBehaviour : MonoBehaviour
 
     private Animator animator;
 
+    private float cooldown = 0;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -29,13 +31,19 @@ public class FolderBehaviour : MonoBehaviour
     // Update is called once per frame
     void Update()
     { 
+        if(cooldown>0) {
+            cooldown -= Time.deltaTime;
+        }
         if(player.transform.position.x > gameObject.transform.position.x - 0.4f &&
            player.transform.position.x < gameObject.transform.position.x + 0.4f &&
            player.transform.position.y > gameObject.transform.position.y - 0.3f &&
            player.transform.position.y < gameObject.transform.position.y + 0.3f) {
-
-            gameController.selectLevel(gameObject.tag);
+            
             animator.SetBool("PlayerOnFolder", true);
+
+            if (Input.GetKey(KeyCode.E) && cooldown <= 0) {
+                gameController.selectLevel(gameObject.tag);
+            }
         }
         else {
             animator.SetBool("PlayerOnFolder", false);

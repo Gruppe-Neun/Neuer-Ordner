@@ -30,7 +30,7 @@ public class TimeLevelBehavior : LevelBehavior {
         if (status == 0) {
             gameObject.SetActive(true);
             timeLeft = time;
-            nextSpawn = time - SpawnInterval;
+            nextSpawn = time - SpawnInterval/2;
         }
     }
 
@@ -43,7 +43,11 @@ public class TimeLevelBehavior : LevelBehavior {
             status = 1;
         }
         if (timeLeft <= nextSpawn) {
-            nextSpawn -= SpawnInterval;
+            if (nextSpawn > SpawnInterval) {
+                nextSpawn -= SpawnInterval;
+            } else {
+                nextSpawn = -1;
+            }
             spawnWave();
             
         }

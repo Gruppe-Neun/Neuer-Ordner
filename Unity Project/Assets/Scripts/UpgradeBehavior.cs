@@ -5,12 +5,14 @@ using UnityEngine;
 public class UpgradeBehavior : MonoBehaviour
 {
 
+    public const int UPGRADE_KEY = 0;
     public const int UPGRADE_SHOTSPEED = 1;
     public const int UPGRADE_BULLETSPEED = 2;
     public const int UPGRADE_BULLETSIZE = 3;
     public const int UPGRADE_BULLETCOUNT = 4;
     public const int UPGRADE_MOVESPEED = 5;
     public const int UPGRADE_BULLETDAMAGE = 6;
+
 
     public PlayerBehavior player;
 

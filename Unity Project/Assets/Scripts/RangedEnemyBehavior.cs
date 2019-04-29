@@ -17,7 +17,7 @@ public class RangedEnemyBehavior : EnemyBehavior
 
     public float bulletSpread = 0f;
 
-    public float targetDistance = 2f;
+    public float targetDistance = 1f;
 
 
     private Animator animator;

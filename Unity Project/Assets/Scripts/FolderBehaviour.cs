@@ -9,17 +9,12 @@ public class FolderBehaviour : MonoBehaviour
 
     public Text folderName;
 
-    public GameObject player;
 
-    public Animator animator;
+    private GameControllerBehavior gameController;
 
-    public GameObject folderTopLeft;
+    private GameObject player;
 
-    public GameObject folderTopRight;
-
-    public GameObject folderBottomLeft;
-
-    public GameObject folderBottomRight;
+    private Animator animator;
 
     // Start is called before the first frame update
     void Start()
@@ -27,16 +22,8 @@ public class FolderBehaviour : MonoBehaviour
         player = GameObject.FindWithTag("Player");
         animator = GetComponent<Animator>();
         folderName = this.gameObject.GetComponentInChildren<Text>();
-
-        folderTopLeft = GameObject.FindGameObjectWithTag("FolderTopLeft");
-        folderTopRight = GameObject.FindGameObjectWithTag("FolderTopRight");
-        folderBottomLeft = GameObject.FindGameObjectWithTag("FolderBottomLeft");
-        folderBottomRight = GameObject.FindGameObjectWithTag("FolderBottomRight");
-
-        gameObject.SetActive(false);
-
-        folderBottomRight.SetActive(true);
-        folderBottomRight.GetComponentInChildren<Text>().text = "Start Game";
+        gameController = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameControllerBehavior>(); ;
+        
     }
 
     // Update is called once per frame
@@ -47,14 +34,20 @@ public class FolderBehaviour : MonoBehaviour
            player.transform.position.y > gameObject.transform.position.y - 0.3f &&
            player.transform.position.y < gameObject.transform.position.y + 0.3f) {
 
+            gameController.selectLevel(gameObject.tag);
             animator.SetBool("PlayerOnFolder", true);
         }
         else {
             animator.SetBool("PlayerOnFolder", false);
         }
     }
-
-    private void LoadStage1() {
-
+    
+    public void setName(string folderName) {
+        if (folderName == null) {
+            gameObject.SetActive(false);
+        } else {
+            gameObject.SetActive(true);
+            GetComponentInChildren<Text>().text = folderName;
+        }
     }
 }

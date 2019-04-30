@@ -67,18 +67,26 @@ public class GameControllerBehavior : MonoBehaviour {
     {
         if (activeLevel.getStatus() == 1) {
             levelSelectScreen();
+            progressBar.setProgress(0);
+        } else {
+            progressBar.setProgress(activeLevel.progress());
         }
-        progressBar.setProgress(activeLevel.progress());
+        
 
     }
 
     public void levelSelectScreen() {
         string[] names = new string[] { null, null, null, null };
-        int[] locks = new int[4] { 0, 0, 0, 0 }; 
-        
-        if (activeLevel.predecessor != null) {
-            names[0] = "zurück";
+        int[] locks = new int[4] { 0, 0, 0, 0 };
+
+        if (activeLevel.predecessor == endLevel) {
+            names[0] = "Michael Mülleimer";
             locks[0] = activeLevel.predecessor.locked - player.keyAmount;
+        } else {
+            if (activeLevel.predecessor != null) {
+                names[0] = "zurück";
+                locks[0] = activeLevel.predecessor.locked - player.keyAmount;
+            }
         }
         if (activeLevel.successor_1 != null) {
             names[1] = activeLevel.successor_1.levelName;

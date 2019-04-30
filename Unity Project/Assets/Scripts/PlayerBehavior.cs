@@ -154,5 +154,6 @@ public class PlayerBehavior : MonoBehaviour{
                 GameObject.Find("GameController").GetComponent<GameControllerBehavior>().gameOver(true);
                 break;
         }
+        GameObject.Find("GameController").GetComponent<GameControllerBehavior>().addItem(Type);
     }
 }

@@ -29,6 +29,9 @@ public class GameControllerBehavior : MonoBehaviour {
     private FolderBehaviour folderBottomLeft;
     private FolderBehaviour folderBottomRight;
 
+    private int[] itemAmount = new int[0];
+    public ItemShowcaseBehavior[] itemShowcase;
+
     private Text path;
 
     private ProgressBarBehavior progressBar;
@@ -49,7 +52,7 @@ public class GameControllerBehavior : MonoBehaviour {
 
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerBehavior>();
 
-
+        itemAmount = new int[itemShowcase.Length];
 
         folderTopLeft.setName(null,0);
         folderTopRight.setName(null,0);
@@ -136,6 +139,11 @@ public class GameControllerBehavior : MonoBehaviour {
     public void addScore(int add) {
         score += add;
         scoreText.text = "" + score;
+    }
+
+    public void addItem(int type) {
+        itemAmount[type]++;
+        itemShowcase[type].setAmount(itemAmount[type]);        
     }
 
     //gameOverScreen

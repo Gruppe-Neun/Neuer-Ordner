@@ -28,6 +28,7 @@ public class GameOverScreen : MonoBehaviour
         pauseMenuUI.SetActive(false);
         Time.timeScale = 1f;
         Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
         gamePaused = false;
     }
 
@@ -36,6 +37,7 @@ public class GameOverScreen : MonoBehaviour
         Time.timeScale = 0f;
         Cursor.lockState = CursorLockMode.None;
         gamePaused = true;
+        Cursor.visible = true;
         if (win) {
             gameOverMessage.text = "congratulations you won";
         } else {

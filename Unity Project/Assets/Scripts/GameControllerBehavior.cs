@@ -45,7 +45,9 @@ public class GameControllerBehavior : MonoBehaviour {
     // Start is called before the first frame update
     void Start()
     {
-        
+
+        Cursor.visible = false;
+
         path = GetComponentInChildren<Text>();
         progressBar = GameObject.FindGameObjectWithTag("ProgressBar").GetComponent<ProgressBarBehavior>();
         folderTopLeft = GameObject.FindGameObjectWithTag("FolderTopLeft").GetComponent<FolderBehaviour>();

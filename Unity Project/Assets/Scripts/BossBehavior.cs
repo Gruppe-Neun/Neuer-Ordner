@@ -7,9 +7,11 @@ public class BossBehavior : EnemyBehavior
 
     public int state = 0;
 
-    public float punchCooldown = 3;
+    public float punchCooldown = 8;
 
 
+
+    private float damageOnTouchCooldown = 0;
 
     private int maxLifePoints;
 
@@ -17,17 +19,57 @@ public class BossBehavior : EnemyBehavior
 
     private ArmBehavior arm;
 
+    private Vector3 armOrigin = new Vector3(1,-1.6f,1);
+
+    private float nextPunch;
+
+
     // Start is called before the first frame update
     void Start()
     {
-        front = GameObject.Find("front").GetComponent<SpriteRenderer>();
+        //front = GameObject.Find("front").GetComponent<SpriteRenderer>();
         arm = GetComponentInChildren<ArmBehavior>();
         maxLifePoints = lifepoints;
+        nextPunch = punchCooldown;
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (damageOnTouchCooldown > 0) {
+            damageOnTouchCooldown -= Time.deltaTime;
+        }
+
+        float armRotation = Random.Range(-45, 45);
+        switch (state) {
+            case 0:
+                if (nextPunch < 0) {
+                    nextPunch = punchCooldown;
+                    arm.punch(3, 0.2f, armOrigin, armRotation);
+                } else {
+                    nextPunch -= Time.deltaTime;
+                }
+                break;
+
+            case 1:
+                if (nextPunch < 0) {
+                    nextPunch = punchCooldown;
+                    arm.punch(2, 0.15f, armOrigin, armRotation);
+                } else {
+                    nextPunch -= Time.deltaTime;
+                }
+                break;
+
+            case 2:
+                if (nextPunch < 0) {
+                    nextPunch = punchCooldown;
+                    arm.punch(1.5f, 0.1f, armOrigin, armRotation);
+                } else {
+                    nextPunch -= Time.deltaTime;
+                }
+                break;
+        }
+
         
     }
 
@@ -40,6 +82,7 @@ public class BossBehavior : EnemyBehavior
         } else {
             if (lifepoints < maxLifePoints / 3) {
                 state = 2;
+
             } else {
                 if(lifepoints < maxLifePoints / 3 * 2) {
                     state = 1;
@@ -50,6 +93,13 @@ public class BossBehavior : EnemyBehavior
     }
 
     public float healthPercentage() {
-        return ((float)lifepoints/(float)maxLifePoints);        
+        return ((float)lifepoints/(float)maxLifePoints);
+    }
+
+    void OnTriggerEnter2D(Collider2D other) {
+        if (other.GetComponents<PlayerBehavior>().Length > 0 && damageOnTouchCooldown <= 0) {
+            other.GetComponent<PlayerBehavior>().hit(1);
+            damageOnTouchCooldown = 3;
+        }
     }
 }

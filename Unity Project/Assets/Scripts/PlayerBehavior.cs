@@ -10,7 +10,7 @@ public class PlayerBehavior : MonoBehaviour{
     
     public CursorBehavior cursor;
 
-    public PauseMenu pauseMenu;
+    public PanelScript panelScript;
 
     public int lives = 3;
 
@@ -44,7 +44,7 @@ public class PlayerBehavior : MonoBehaviour{
     void Update(){
 
         //Shooting
-        if(Input.GetMouseButton(0)&&shotCooldown<=0&&!PauseMenu.gamePaused){
+        if(Input.GetMouseButton(0)&&shotCooldown<=0&&!PanelScript.gamePaused){
             float rotation = Vector3.Angle(new Vector3(0, -1, 0), new Vector3(transform.position[0] - cursor.transform.position[0], transform.position[1] - cursor.transform.position[1], 0));
             if (transform.position[0] > cursor.transform.position[0]) { rotation *= -1; }
             rotation -= ((bulletCountMultiplier - 1) * 2.5f);
@@ -95,7 +95,7 @@ public class PlayerBehavior : MonoBehaviour{
             right = true;
         }
 
-        if (!PauseMenu.gamePaused) {
+        if (!PanelScript.gamePaused) {
             animator.SetBool("top", top);
             animator.SetBool("bot", bot);
             animator.SetBool("left", left);

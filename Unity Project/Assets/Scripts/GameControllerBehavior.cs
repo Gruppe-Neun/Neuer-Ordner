@@ -17,7 +17,6 @@ public class GameControllerBehavior : MonoBehaviour {
 
     public Text scoreText;
 
-
     private int score = 0;
 
     private PlayerBehavior player;
@@ -33,9 +32,15 @@ public class GameControllerBehavior : MonoBehaviour {
 
     private ProgressBarBehavior progressBar;
 
+    public static bool won;
+
+    public static bool lost;
+
     // Start is called before the first frame update
     void Start()
     {
+        won = false;
+        lost = false;
         
         path = GetComponentInChildren<Text>();
         progressBar = GameObject.FindGameObjectWithTag("ProgressBar").GetComponent<ProgressBarBehavior>();
@@ -141,9 +146,11 @@ public class GameControllerBehavior : MonoBehaviour {
     //gameOverScreen
     public void gameOver(bool win) {
         if (win) {
+            won = true;
             levelBackground.gameObject.SetActive(true);
             levelBackground.sprite = winScreen;
         } else {
+            lost = true;
             levelBackground.sprite = defeatScreen;
             levelBackground.gameObject.SetActive(true);
         }

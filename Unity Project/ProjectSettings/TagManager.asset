@@ -11,6 +11,9 @@ TagManager:
   - FolderBottomRight
   - LevelBackground
   - ProgressBar
+  - WinPanel
+  - DefeatPanel
+  - PausePanel
   layers:
   - Default
   - TransparentFX

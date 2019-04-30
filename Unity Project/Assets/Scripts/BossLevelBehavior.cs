@@ -47,7 +47,8 @@ public class BossLevelBehavior : LevelBehavior
         if (boss.lifepoints <= 0) {
             gameObject.SetActive(false);
             status = 1;
-            GameObject.Instantiate(Reward, new Vector3(0, 0, 0), new Quaternion());
+            EnemyBehavior newEnemy = GameObject.Instantiate(Reward, new Vector3(0, 0, 0), new Quaternion()).GetComponent<EnemyBehavior>();
+            newEnemy.gameController = gameController;
         }
         if (nextSpawn <= 0) {
             spawnWave();
@@ -91,6 +92,7 @@ public class BossLevelBehavior : LevelBehavior
                 } else {
                     EnemyBehavior newEnemy = GameObject.Instantiate(enemies[i], new Vector3(xSpawn, ySpawn, 0), new Quaternion());
                     newEnemy.player = player;
+                    newEnemy.gameController = gameController;
                 }
 
             }

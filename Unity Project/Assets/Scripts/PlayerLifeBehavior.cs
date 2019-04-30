@@ -6,7 +6,7 @@ public class PlayerLifeBehavior : MonoBehaviour
 {
 
     private Animator animator;
-    private int updated = -1;
+    private float updated = -1;
     // Start is called before the first frame update
     void Start()
     {
@@ -16,19 +16,18 @@ public class PlayerLifeBehavior : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (updated == 0) {
-            animator.SetInteger("Lifes", -1);
-            updated = -1;
+        if (updated > 0) {
+            
+            updated -= Time.deltaTime;
         }else {
-            if (updated > 0) {
-                updated -= 1;
-            }
+            updated -= 1;
+            animator.SetInteger("Lifes", -1);
         }
 
     }
 
     public void hit(int lifes) {
         animator.SetInteger("Lifes", lifes);
-        updated = 5;
+        updated = 0.5f;
     }
 }

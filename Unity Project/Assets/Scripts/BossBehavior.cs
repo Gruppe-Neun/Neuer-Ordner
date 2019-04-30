@@ -45,7 +45,7 @@ public class BossBehavior : EnemyBehavior
             case 0:
                 if (nextPunch < 0) {
                     nextPunch = punchCooldown;
-                    arm.punch(3, 0.2f, armOrigin, armRotation);
+                    arm.punch(2, 0.2f, armOrigin, armRotation);
                 } else {
                     nextPunch -= Time.deltaTime;
                 }

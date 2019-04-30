@@ -74,8 +74,8 @@ public class RangedEnemyBehavior : EnemyBehavior
     public override void hit(int damage) {
         lifepoints -= damage;
         if (lifepoints <= 0) {
-            Destroy(gameObject);
             gameController.addScore(score);
+            Destroy(gameObject);
         }
     }
 }

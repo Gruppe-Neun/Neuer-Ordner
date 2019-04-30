@@ -39,12 +39,13 @@ public class TextLevelBehavior : LevelBehavior {
     // Update is called once per frame
     void Update() {
         if (timeLeft < 0) {
-            if (frame > sprite.Length) {
+            if (frame+1 >= sprite.Length) {
+                spriteRenderer.sprite = sprite[frame];
                 status = 1;
             } else {
                 frame++;
                 timeLeft = time;
-
+                spriteRenderer.sprite = sprite[frame - 1];
             }
         } else {
             timeLeft -= Time.deltaTime;

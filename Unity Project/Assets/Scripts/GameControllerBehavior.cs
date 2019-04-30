@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -9,13 +10,18 @@ public class GameControllerBehavior : MonoBehaviour {
 
     public LevelBehavior endLevel;
 
-    public Sprite winScreen;
+    //public Sprite winScreen;
 
-    public Sprite defeatScreen;
+    //public Sprite defeatScreen;
 
     public SpriteRenderer levelBackground;
 
     public Text scoreText;
+
+    public PauseMenu pauseScreen;
+
+    public GameOverScreen gameOverScreen;
+
 
 
     private int score = 0;
@@ -157,11 +163,23 @@ public class GameControllerBehavior : MonoBehaviour {
     //gameOverScreen
     public void gameOver(bool win) {
         if (win) {
-            levelBackground.gameObject.SetActive(true);
-            levelBackground.sprite = winScreen;
+
+            gameOverScreen.Pause(true);
         } else {
-            levelBackground.sprite = defeatScreen;
-            levelBackground.gameObject.SetActive(true);
+            gameOverScreen.Pause(false);
         }
+    }
+
+    public void exitGame() {
+        Application.Quit();
+    }
+
+    public void restart() {
+        SceneManager.LoadScene("Main");
+
+        pauseScreen.Resume();
+        gameOverScreen.Resume();
+
+        //Application.LoadLevel(Application.loadedLevel);
     }
 }

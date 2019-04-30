@@ -111,7 +111,7 @@ public class PlayerBehavior : MonoBehaviour{
             lives -= damage;
             lifeCount.hit(lives);
             if (lives < 0) {
-                Destroy(gameObject);
+                //Destroy(gameObject);
                 GameObject.Find("GameController").GetComponent<GameControllerBehavior>().gameOver(false);
             }
             invincible = 1;
@@ -154,6 +154,7 @@ public class PlayerBehavior : MonoBehaviour{
                 GameObject.Find("GameController").GetComponent<GameControllerBehavior>().gameOver(true);
                 break;
         }
-        GameObject.Find("GameController").GetComponent<GameControllerBehavior>().addItem(Type);
+        if (Type >= 0) { GameObject.Find("GameController").GetComponent<GameControllerBehavior>().addItem(Type); }
+        
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -9,13 +10,19 @@ public class GameControllerBehavior : MonoBehaviour {
 
     public LevelBehavior endLevel;
 
-    public Sprite winScreen;
+    //public Sprite winScreen;
 
-    public Sprite defeatScreen;
+    //public Sprite defeatScreen;
 
     public SpriteRenderer levelBackground;
 
     public Text scoreText;
+
+    public PauseMenu pauseScreen;
+
+    public GameOverScreen gameOverScreen;
+
+
 
     private int score = 0;
 
@@ -28,19 +35,16 @@ public class GameControllerBehavior : MonoBehaviour {
     private FolderBehaviour folderBottomLeft;
     private FolderBehaviour folderBottomRight;
 
+    private int[] itemAmount = new int[0];
+    public ItemShowcaseBehavior[] itemShowcase;
+
     private Text path;
 
     private ProgressBarBehavior progressBar;
 
-    public static bool won;
-
-    public static bool lost;
-
     // Start is called before the first frame update
     void Start()
     {
-        won = false;
-        lost = false;
         
         path = GetComponentInChildren<Text>();
         progressBar = GameObject.FindGameObjectWithTag("ProgressBar").GetComponent<ProgressBarBehavior>();
@@ -54,7 +58,7 @@ public class GameControllerBehavior : MonoBehaviour {
 
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerBehavior>();
 
-
+        itemAmount = new int[itemShowcase.Length];
 
         folderTopLeft.setName(null,0);
         folderTopRight.setName(null,0);
@@ -69,18 +73,26 @@ public class GameControllerBehavior : MonoBehaviour {
     {
         if (activeLevel.getStatus() == 1) {
             levelSelectScreen();
+            progressBar.setProgress(0);
+        } else {
+            progressBar.setProgress(activeLevel.progress());
         }
-        progressBar.setProgress(activeLevel.progress());
+        
 
     }
 
     public void levelSelectScreen() {
         string[] names = new string[] { null, null, null, null };
-        int[] locks = new int[4] { 0, 0, 0, 0 }; 
-        
-        if (activeLevel.predecessor != null) {
-            names[0] = "zurück";
+        int[] locks = new int[4] { 0, 0, 0, 0 };
+
+        if (activeLevel.predecessor == endLevel) {
+            names[0] = "Michael Mülleimer";
             locks[0] = activeLevel.predecessor.locked - player.keyAmount;
+        } else {
+            if (activeLevel.predecessor != null) {
+                names[0] = "zurück";
+                locks[0] = activeLevel.predecessor.locked - player.keyAmount;
+            }
         }
         if (activeLevel.successor_1 != null) {
             names[1] = activeLevel.successor_1.levelName;
@@ -143,16 +155,31 @@ public class GameControllerBehavior : MonoBehaviour {
         scoreText.text = "" + score;
     }
 
+    public void addItem(int type) {
+        itemAmount[type]++;
+        itemShowcase[type].setAmount(itemAmount[type]);        
+    }
+
     //gameOverScreen
     public void gameOver(bool win) {
         if (win) {
-            won = true;
-            levelBackground.gameObject.SetActive(true);
-            levelBackground.sprite = winScreen;
+
+            gameOverScreen.Pause(true);
         } else {
-            lost = true;
-            levelBackground.sprite = defeatScreen;
-            levelBackground.gameObject.SetActive(true);
+            gameOverScreen.Pause(false);
         }
+    }
+
+    public void exitGame() {
+        Application.Quit();
+    }
+
+    public void restart() {
+        SceneManager.LoadScene("Main");
+
+        pauseScreen.Resume();
+        gameOverScreen.Resume();
+
+        //Application.LoadLevel(Application.loadedLevel);
     }
 }

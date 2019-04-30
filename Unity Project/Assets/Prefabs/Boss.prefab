@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 7203672252676706169}
   - component: {fileID: 3660882101650384515}
   - component: {fileID: 9217410208316030909}
+  - component: {fileID: 2862043816564800378}
   m_Layer: 0
   m_Name: arm
   m_TagString: Untagged
@@ -96,6 +97,18 @@ CapsuleCollider2D:
   m_Offset: {x: -0.34759942, y: 0.25135413}
   m_Size: {x: 10.459764, y: 1.5038745}
   m_Direction: 1
+--- !u!114 &2862043816564800378
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3996139511869779}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb1686bff56a1f46bb51ec8c6b5b12d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4307816075743754122
 GameObject:
   m_ObjectHideFlags: 0
@@ -122,7 +135,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4307816075743754122}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 1.1}
+  m_LocalPosition: {x: 0, y: 0, z: -1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4307816076278709883}
@@ -299,7 +312,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4307816076207423963}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -1}
+  m_LocalPosition: {x: 0, y: 0, z: -2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4307816076278709883}
@@ -408,7 +421,7 @@ MonoBehaviour:
   lifepoints: 100
   moveSpeed: 2
   state: 0
-  punchCooldown: 3
+  punchCooldown: 10
 --- !u!50 &7052004991071917713
 Rigidbody2D:
   serializedVersion: 4
@@ -493,7 +506,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5835731074403630504}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 5.9, y: -1.64, z: 1}
+  m_LocalPosition: {x: -5, y: -1.64, z: 1}
   m_LocalScale: {x: 1.2, y: 0.9, z: 1}
   m_Children:
   - {fileID: 7203672252676706169}

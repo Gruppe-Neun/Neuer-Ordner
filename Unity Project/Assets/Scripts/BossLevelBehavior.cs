@@ -35,7 +35,9 @@ public class BossLevelBehavior : LevelBehavior
             nextSpawn = SpawnInterval;
             boss = GameObject.Instantiate(boss);
             boss.gameController = gameController;
+            player.transform.position = new Vector3(3, 0, player.transform.position.z);
         }
+        
        
     }
 

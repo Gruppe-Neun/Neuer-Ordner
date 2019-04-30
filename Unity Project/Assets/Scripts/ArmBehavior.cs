@@ -28,30 +28,34 @@ public class ArmBehavior : MonoBehaviour
         }
         timer += Time.deltaTime;
         if (timer < warning) {
-            warningColor.a = (timer / warning) * 255;
+            warningColor.a = ((float)timer / (float)warning);
             warningSprite.color = warningColor;
         } else {
             if(timer < hit+warning) {
-                arm.transform.position = new Vector3((timer-warning)/hit*9-9,0,1);
+                arm.transform.localPosition = new Vector3((timer-warning)/hit*10-10,0,-1);
             } else {
                 if(timer < hit + warning + 2) {
-
-                } else {
-                    arm.transform.position = new Vector3(-9, 0, 1);
                     warningColor.a = 0;
                     warningSprite.color = warningColor;
+                    arm.transform.localPosition = new Vector3(0 - (timer - warning - hit) / 2 * 10, 0, -1);
+                } else {
+                    arm.transform.localPosition = new Vector3(-10, 0, -1);
                 }
             }
         }
     }
 
-    public void punch(float warningTime,float hitTime,Vector3 from,Vector3 to) {
+    public void punch(float warningTime,float hitTime,Vector3 from,float rotation) {
+
         timer = 0;
         warning = warningTime;
         hit = hitTime;
-        transform.position = Vector3.MoveTowards(from, to, Vector3.Distance(from, to));
-        transform.rotation = Quaternion.FromToRotation(from, to);
-        arm.transform.position = new Vector3(-9,0,-1);
+
+        transform.rotation = Quaternion.AngleAxis(rotation ,Vector3.back);
+        transform.localPosition = from;
+        transform.position += transform.right * 5;
+        arm.transform.localPosition = new Vector3(-10,0,-1);
+
         warningColor = new Color(255, 255, 255, 0);
         warningSprite.color = warningColor;
     }

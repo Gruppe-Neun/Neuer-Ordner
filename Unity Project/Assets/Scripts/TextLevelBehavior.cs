@@ -38,7 +38,7 @@ public class TextLevelBehavior : LevelBehavior {
 
     // Update is called once per frame
     void Update() {
-        if (timeLeft < 0) {
+        if (timeLeft < 0|| Input.GetKeyDown(KeyCode.Space)) {
             if (frame+1 >= sprite.Length) {
                 spriteRenderer.sprite = sprite[frame];
                 status = 1;

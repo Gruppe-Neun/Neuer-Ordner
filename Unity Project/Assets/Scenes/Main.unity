@@ -334,7 +334,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60ee40bd3d294c344a9628065f130c4b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelName: Start
+  levelName: Omega
   gameController: {fileID: 0}
   locked: 0
   successor_1: {fileID: 0}
@@ -1079,7 +1079,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60ee40bd3d294c344a9628065f130c4b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelName: Start
+  levelName: Furry
   gameController: {fileID: 0}
   locked: 0
   successor_1: {fileID: 0}
@@ -1302,11 +1302,11 @@ MonoBehaviour:
   pauseMenu: {fileID: 0}
   lives: 3
   bulletSizeMultiplier: 1
-  bulletCountMultiplier: 3
+  bulletCountMultiplier: 1
   bulletSpeedMultiplier: 1
   shotSpeedMultiplier: 2
   moveSpeedMutiplier: 1
-  bulletDamageMultiplier: 1
+  bulletDamageMultiplier: 2
   keyAmount: 0
 --- !u!212 &382747262
 SpriteRenderer:
@@ -1454,16 +1454,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Little Ranged Enemy
       objectReference: {fileID: 0}
-    - target: {fileID: 5453316148091042141, guid: 13875b568d06d4640a23ecf61149266c,
-        type: 3}
-      propertyPath: shootSpeed
-      value: 1.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 5453316148091042141, guid: 13875b568d06d4640a23ecf61149266c,
-        type: 3}
-      propertyPath: score
-      value: 33
-      objectReference: {fileID: 0}
     - target: {fileID: 2115378589034559294, guid: 13875b568d06d4640a23ecf61149266c,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1528,6 +1518,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.y
       value: 0.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 5453316148091042141, guid: 13875b568d06d4640a23ecf61149266c,
+        type: 3}
+      propertyPath: shootSpeed
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5453316148091042141, guid: 13875b568d06d4640a23ecf61149266c,
+        type: 3}
+      propertyPath: score
+      value: 33
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 13875b568d06d4640a23ecf61149266c, type: 3}
@@ -1636,16 +1636,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   levelName: neuer Ordner
   gameController: {fileID: 0}
-  locked: 3
+  locked: 2
   successor_1: {fileID: 0}
   successor_2: {fileID: 0}
   successor_3: {fileID: 0}
   predecessor: {fileID: 0}
-  SpawnInterval: 3
+  SpawnInterval: 6
   enemies:
   - {fileID: 1167701117}
-  - {fileID: 1491532374}
-  - {fileID: 186264119}
+  - {fileID: 5453316148091042141, guid: 13875b568d06d4640a23ecf61149266c, type: 3}
+  - {fileID: 1907027332}
   EnemyAmout: 010000000100000001000000
   Reward: {fileID: 5696828801185677070, guid: 097862cfbc7c6a346a647f15838456c4, type: 3}
   itemPercentage: 0
@@ -2006,7 +2006,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60ee40bd3d294c344a9628065f130c4b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelName: Start
+  levelName: Shrek
   gameController: {fileID: 0}
   locked: 0
   successor_1: {fileID: 0}
@@ -2547,7 +2547,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60ee40bd3d294c344a9628065f130c4b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelName: Start
+  levelName: dawrqwe
   gameController: {fileID: 0}
   locked: 0
   successor_1: {fileID: 0}
@@ -2784,7 +2784,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60ee40bd3d294c344a9628065f130c4b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelName: Start
+  levelName: Unwichtig
   gameController: {fileID: 0}
   locked: 0
   successor_1: {fileID: 0}
@@ -3711,26 +3711,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Fast Range Enemy
       objectReference: {fileID: 0}
-    - target: {fileID: 5453316148091042141, guid: 13875b568d06d4640a23ecf61149266c,
-        type: 3}
-      propertyPath: score
-      value: 103
-      objectReference: {fileID: 0}
-    - target: {fileID: 5453316148091042141, guid: 13875b568d06d4640a23ecf61149266c,
-        type: 3}
-      propertyPath: bulletSpread
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 5453316148091042141, guid: 13875b568d06d4640a23ecf61149266c,
-        type: 3}
-      propertyPath: shootSpeed
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 5453316148091042141, guid: 13875b568d06d4640a23ecf61149266c,
-        type: 3}
-      propertyPath: lifepoints
-      value: 4
-      objectReference: {fileID: 0}
     - target: {fileID: 2115378589034559294, guid: 13875b568d06d4640a23ecf61149266c,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3786,6 +3766,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5453316148091042141, guid: 13875b568d06d4640a23ecf61149266c,
+        type: 3}
+      propertyPath: score
+      value: 103
+      objectReference: {fileID: 0}
+    - target: {fileID: 5453316148091042141, guid: 13875b568d06d4640a23ecf61149266c,
+        type: 3}
+      propertyPath: bulletSpread
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 5453316148091042141, guid: 13875b568d06d4640a23ecf61149266c,
+        type: 3}
+      propertyPath: shootSpeed
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5453316148091042141, guid: 13875b568d06d4640a23ecf61149266c,
+        type: 3}
+      propertyPath: lifepoints
+      value: 4
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 13875b568d06d4640a23ecf61149266c, type: 3}
 --- !u!1 &992805571
@@ -3817,9 +3817,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60ee40bd3d294c344a9628065f130c4b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelName: neuer Ordner
+  levelName: pornos
   gameController: {fileID: 0}
-  locked: 2
+  locked: 1
   successor_1: {fileID: 489505328}
   successor_2: {fileID: 348700047}
   successor_3: {fileID: 2049043786}
@@ -4108,36 +4108,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Shotgun Enemy
       objectReference: {fileID: 0}
-    - target: {fileID: 5453316148091042141, guid: 13875b568d06d4640a23ecf61149266c,
-        type: 3}
-      propertyPath: bulletSpread
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 5453316148091042141, guid: 13875b568d06d4640a23ecf61149266c,
-        type: 3}
-      propertyPath: bulletNumber
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 5453316148091042141, guid: 13875b568d06d4640a23ecf61149266c,
-        type: 3}
-      propertyPath: shootSpeed
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 5453316148091042141, guid: 13875b568d06d4640a23ecf61149266c,
-        type: 3}
-      propertyPath: bulletSpeed
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 5453316148091042141, guid: 13875b568d06d4640a23ecf61149266c,
-        type: 3}
-      propertyPath: lifepoints
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 5453316148091042141, guid: 13875b568d06d4640a23ecf61149266c,
-        type: 3}
-      propertyPath: score
-      value: 62
-      objectReference: {fileID: 0}
     - target: {fileID: 2115378589034559294, guid: 13875b568d06d4640a23ecf61149266c,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -4193,6 +4163,36 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5453316148091042141, guid: 13875b568d06d4640a23ecf61149266c,
+        type: 3}
+      propertyPath: bulletSpread
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 5453316148091042141, guid: 13875b568d06d4640a23ecf61149266c,
+        type: 3}
+      propertyPath: bulletNumber
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5453316148091042141, guid: 13875b568d06d4640a23ecf61149266c,
+        type: 3}
+      propertyPath: shootSpeed
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5453316148091042141, guid: 13875b568d06d4640a23ecf61149266c,
+        type: 3}
+      propertyPath: bulletSpeed
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5453316148091042141, guid: 13875b568d06d4640a23ecf61149266c,
+        type: 3}
+      propertyPath: lifepoints
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5453316148091042141, guid: 13875b568d06d4640a23ecf61149266c,
+        type: 3}
+      propertyPath: score
+      value: 62
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 13875b568d06d4640a23ecf61149266c, type: 3}
 --- !u!1 &1171194658
@@ -4224,7 +4224,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60ee40bd3d294c344a9628065f130c4b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelName: neuer Ordner
+  levelName: qwertz
   gameController: {fileID: 0}
   locked: 1
   successor_1: {fileID: 1482186071}
@@ -4867,7 +4867,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60ee40bd3d294c344a9628065f130c4b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelName: Start
+  levelName: Keys
   gameController: {fileID: 0}
   locked: 0
   successor_1: {fileID: 0}
@@ -6383,7 +6383,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60ee40bd3d294c344a9628065f130c4b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelName: neuer Ordner
+  levelName: Alpha
   gameController: {fileID: 0}
   locked: 0
   successor_1: {fileID: 4744666059236728733}
@@ -6730,7 +6730,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60ee40bd3d294c344a9628065f130c4b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelName: Start
+  levelName: Baguette
   gameController: {fileID: 0}
   locked: 0
   successor_1: {fileID: 0}
@@ -6887,7 +6887,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60ee40bd3d294c344a9628065f130c4b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelName: Start
+  levelName: Bronies
   gameController: {fileID: 0}
   locked: 0
   successor_1: {fileID: 0}
@@ -7200,7 +7200,12 @@ PrefabInstance:
     - target: {fileID: 2418754985527812446, guid: b8a9b8b6388e73e4884ea82a4fd788fe,
         type: 3}
       propertyPath: bulletCountMultiplier
-      value: 3
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2418754985527812446, guid: b8a9b8b6388e73e4884ea82a4fd788fe,
+        type: 3}
+      propertyPath: bulletDamageMultiplier
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2418754985527812444, guid: b8a9b8b6388e73e4884ea82a4fd788fe,
         type: 3}
@@ -7277,6 +7282,11 @@ PrefabInstance:
       propertyPath: m_Size.y
       value: 1.0845506
       objectReference: {fileID: 0}
+    - target: {fileID: 2418754985527812513, guid: b8a9b8b6388e73e4884ea82a4fd788fe,
+        type: 3}
+      propertyPath: m_Simulated
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b8a9b8b6388e73e4884ea82a4fd788fe, type: 3}
 --- !u!4 &4744666059236728732
@@ -7305,7 +7315,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60ee40bd3d294c344a9628065f130c4b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelName: Start
+  levelName: Beta
   gameController: {fileID: 0}
   locked: 0
   successor_1: {fileID: 0}

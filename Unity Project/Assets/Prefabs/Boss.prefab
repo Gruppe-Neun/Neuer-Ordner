@@ -421,7 +421,7 @@ MonoBehaviour:
   lifepoints: 200
   moveSpeed: 2
   state: 0
-  punchCooldown: 6
+  punchCooldown: 5
 --- !u!50 &7052004991071917713
 Rigidbody2D:
   serializedVersion: 4
